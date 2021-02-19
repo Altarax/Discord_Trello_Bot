@@ -20,8 +20,7 @@ client = TrelloClient(
 client.run(discord_secret.token)
 ```
 
-I used this module :
-https://pypi.org/project/py-trello/
+I used this module : https://pypi.org/project/py-trello/  
 
 # Others features
 
@@ -29,6 +28,6 @@ https://pypi.org/project/py-trello/
 
 # Futurs features
 
-> Add a card with a command on discord
-> Music bot with (like Groovy)
-> Scrapping of our school website (like agenda...)
+> Add a card with a command on discord  
+> Music bot with (like Groovy)  
+> Scrapping of our school website (like agenda...)  
