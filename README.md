@@ -31,3 +31,10 @@ I used this module : https://pypi.org/project/py-trello/
 > Add a card with a command on discord  
 > Music bot with (like Groovy)  
 > Scrapping of our school website (like agenda...)  
+
+## Me and programming langages (progression)
+- *01/03/2021* 
+
+| VHDL                        | Python                      | C                           |
+|-----------------------------|-----------------------------|-----------------------------|
+|  ➖🚀➖➖➖➖➖➖➖🌑  |  ➖➖➖➖➖➖🚀➖➖🌑  |  ➖➖➖➖🚀➖➖➖➖🌑  |
