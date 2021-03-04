@@ -28,7 +28,7 @@ def get_new_card():
     new_card = work_list.list_cards()[-1]
     id_new_card = new_card.id
 
-    # Add the day + 1 of the last card if date = error
+    # Add the day + 1 of the last card if no date
     if not new_card.due_date:
         new_card.set_due(last_card_work_list.due_date+timedelta(days=1))
     else:
