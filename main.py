@@ -1,6 +1,5 @@
 # Librairies
 import asyncio
-import cogs
 import discord_secret
 from discord.ext import commands
 from trello_task import get_new_card
@@ -45,8 +44,11 @@ async def reload(ctx, name=None):
 
 # Delete message
 @client.command()
-async def d(ctx, amount=3):
-    await ctx.channel.purge(limit=amount+1)
+async def d(ctx, amount):
+    if str(amount) == "all":
+        await ctx.channel.purge(limit=1000)
+    else:
+        await ctx.channel.purge(limit=int(amount)+1)
 
 
 # Send message when we add a card in trello
@@ -71,11 +73,12 @@ async def everytime():
 
     while True:
         list_new_card = get_new_card()
+
         if list_new_card != 0:
             list_information = list_new_card
             await on_trello()
-        await asyncio.sleep(2)
 
+        await asyncio.sleep(2)
 
 client.loop.create_task(everytime())
 
