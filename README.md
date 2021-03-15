@@ -29,9 +29,10 @@ I used this module : https://pypi.org/project/py-trello/
 # Futurs features
 
 > Add !archive to archive the first card in the list ✔️  
+> Add an auto archive function ✔️  
 > Add a card with a command on discord ❌  
 > Music bot with (like Groovy) ❌  
-> Scrapping of our school website (like agenda...) ❌  
+> Scrapping of our school website (like agenda...) ❌ (my first tests were inconclusive. Because of bad tokens I think I can't)
 
 ## Me and programming langages (progression)
 - *01/03/2021* 
