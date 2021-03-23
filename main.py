@@ -68,7 +68,7 @@ async def on_trello():
 
 # While loop to verify if we had a new card in Trello
 @client.event
-async def everytime():
+async def new_card_loop():
     global list_information
 
     while True:
@@ -80,7 +80,24 @@ async def everytime():
 
         await asyncio.sleep(2)
 
-client.loop.create_task(everytime())
+task = None
+
+
+# Starting the loop
+@client.command()
+async def start(ctx):
+    global task
+    task = client.loop.create_task(new_card_loop())
+
+    await d(ctx, 0)
+
+
+# Stopping the loop
+@client.command()
+async def stop(ctx):
+    task.cancel()
+
+    await d(ctx, 0)
 
 client.load_extension("cogs")
 
