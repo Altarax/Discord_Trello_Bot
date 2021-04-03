@@ -24,7 +24,7 @@ I used this module : https://pypi.org/project/py-trello/
 
 # Others features
 
-> Simple code to delete message on channel "!d"
+> Simple code to delete message on channel "!d"  
 > !rappel 'interval' 'note' #To remind every day or every week example : !rappel 1d Go to work
 
 # Futurs features
