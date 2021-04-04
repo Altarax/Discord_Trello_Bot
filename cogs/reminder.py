@@ -1,15 +1,9 @@
-# Créer une commande !reminder : Check
-# Params : interval, le rappel : Check
-# Créer des listes en fonction des intervals : Check
-# Créer des scheduler en fonction de chaque interval
-# Renvoyer dans le channel "rappels"
-
 # Librairies
 from apscheduler.schedulers.blocking import BlockingScheduler
 from discord.ext import commands
 import discord_secret
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from main import client
+from main import client, d
 
 reminders_1d = {}
 reminders_1w = {}
@@ -39,20 +33,38 @@ class Reminder(commands.Cog):
     async def every_day(self):
         reminder_channel = self.cli.get_channel(discord_secret.secret_reminder_channel)
 
-        for user in reminders_1d.values():
-            await reminder_channel.send(f"@{user} Je devais te rappeler : \n"
-                                        f"{str(reminders_1d.keys()).replace('dict_keys', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '')}")
+        reminder_final_dict = {}
 
+        for key, value in reminders_1d.items():
+            if value not in reminder_final_dict:
+                reminder_final_dict[value] = [key]
+            else:
+                reminder_final_dict[value].append(key)
+
+        for user in reminder_final_dict.keys():
+            await reminder_channel.send(f"@{str(user)} Je devais te rappeler : \n"
+                                        f"{str(reminder_final_dict.get(user)).replace('dict_values', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '')}")
+
+        reminder_final_dict.clear()
         reminders_1d.clear()
 
     @commands.Cog.listener()
     async def every_week(self):
         reminder_channel = self.cli.get_channel(discord_secret.secret_reminder_channel)
 
-        for user in reminders_1w.values():
-            await reminder_channel.send(f"@{user} Je devais te rappeler : \n"
-                                        f"{str(reminders_1w.keys()).replace('dict_keys', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '')}")
+        reminder_final_dict = {}
 
+        for key, value in reminders_1w.items():
+            if value not in reminder_final_dict:
+                reminder_final_dict[value] = [key]
+            else:
+                reminder_final_dict[value].append(key)
+
+        for user in reminder_final_dict.keys():
+            await reminder_channel.send(f"@{str(user)} Je devais te rappeler : \n"
+                                        f"{str(reminder_final_dict.values()).replace('dict_keys', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '')}")
+
+        reminder_final_dict.clear()
         reminders_1w.clear()
 
     @client.command()
@@ -61,11 +73,13 @@ class Reminder(commands.Cog):
 
         if str(interval) == "1d":
             reminders_1d[reminder] = ctx.message.author.name
+            await d(ctx, 0)
         else:
             pass
 
         if str(interval) == "1w":
             reminders_1w[reminder] = ctx.message.author.name
+            await d(ctx, 0)
         else:
             pass
 
